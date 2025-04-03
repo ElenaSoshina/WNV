@@ -126,14 +126,21 @@ textarea {
 
 @media (max-width: 768px) {
     .modal {
-        width: 80%;
+        width: 90%;
         padding: 20px;
     }
 
     .close {
-        padding: 5px;
-        right: 0;
-        top: 0;
+        right: 12px;
+        top: 12px;
+        font-size: 30px;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
     }
 
     select {

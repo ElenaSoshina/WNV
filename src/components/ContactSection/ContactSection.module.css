@@ -57,3 +57,16 @@
 .submitButton:hover {
     background-color: #d14400;
 }
+
+.inputError {
+    border-color: #e85252;
+}
+
+.errorMessage {
+    color: #e85252;
+    font-size: 14px;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    text-align: left;
+    width: 100%;
+}
