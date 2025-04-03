@@ -18,6 +18,12 @@ const ContactSection = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+
+        // Проверка: если поле телефон — разрешаем только +7 и цифры
+        if (name === 'phone') {
+            if (!/^\+?\d{0,12}$/.test(value)) return;
+        }
+
         setFormData({
             ...formData,
             [name]: value
@@ -28,6 +34,15 @@ const ContactSection = () => {
                 ...errors,
                 [name]: ''
             });
+        }
+    };
+
+    const handlePhoneFocus = () => {
+        if (!formData.phone.trim()) {
+            setFormData((prev) => ({
+                ...prev,
+                phone: '+7'
+            }));
         }
     };
 
@@ -43,7 +58,7 @@ const ContactSection = () => {
         if (!formData.phone.trim()) {
             newErrors.phone = 'Пожалуйста, введите номер телефона';
             isValid = false;
-        } else if (!/^(\+7|8)[\s\-]?\(?[0-9]{3}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/.test(formData.phone)) {
+        } else if (!/^\+7\d{10}$/.test(formData.phone)) {
             newErrors.phone = 'Введите корректный номер телефона';
             isValid = false;
         }
@@ -103,6 +118,7 @@ const ContactSection = () => {
                     id="phone"
                     name="phone"
                     value={formData.phone}
+                    onFocus={handlePhoneFocus}
                     onChange={handleChange}
                     placeholder="Введите номер телефона"
                     className={`${styles.input} ${errors.phone ? styles.inputError : ''}`}
