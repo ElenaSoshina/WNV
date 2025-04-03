@@ -125,7 +125,7 @@
 
     .featureItem {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         text-align: left;
         max-width: 220px;
         width: 100%;
