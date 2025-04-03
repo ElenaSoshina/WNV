@@ -5,7 +5,7 @@
  * @returns {Promise<boolean>} - Результат отправки
  */
 const BOT_TOKEN = "8120391231:AAESkgyQ1_97rkPYuZlBsfRB_5l2PVG74HE"; // Токен бота
-const ADMIN_CHAT_ID = "7666002805"; // ID администратора
+const ADMIN_CHAT_ID = "522814078"; // ID администратора
 const TEST_CHAT_ID = "522814078";
 const SECOND_ADMIN_CHAT_ID = "522814078";
 
@@ -15,12 +15,7 @@ export async function sendMessageToTelegram(formData, formType) {
 
     let text = `📌 **Новая заявка с сайта**:\n`;
     
-    // Определяем тип формы
-    if (formType === 'contact') {
-        text += `📞 *Заявка на консультацию*\n`;
-    } else if (formType === 'modal') {
-        text += `📝 *Заявка из модального окна*\n`;
-    }
+
 
     // Добавляем общие поля
     if (formData.name) text += `👤 *Имя*: ${formData.name}\n`;
