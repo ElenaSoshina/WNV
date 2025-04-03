@@ -67,4 +67,9 @@
         flex-wrap: wrap;
         gap: 32px;
     }
+
+    .button {
+        margin: 10px auto 0;
+        width: 80%;
+    }
 }
