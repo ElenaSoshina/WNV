@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Modal.module.css';
+import {sendMessageToTelegram} from "../../utils/telegramAPI.js";
+ // проверь путь
 
 export default function Modal({ isOpen, onClose }) {
     const [name, setName] = useState('');
@@ -34,40 +36,18 @@ export default function Modal({ isOpen, onClose }) {
 
         if (Object.keys(newErrors).length === 0) {
             setSending(true);
-            
+
             try {
-                // Используем webhook.site для тестирования приема заявок
-                // В реальном проекте замените на ваш endpoint
-                const response = await fetch('https://webhook.site/c4f9c7a9-5c6c-49e8-adff-daeb20a96e19', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name,
-                        phone,
-                        service,
-                        comment,
-                        date: new Date().toLocaleString('ru-RU'),
-                        source: 'modal'
-                    })
+                await sendMessageToTelegram({
+                    name,
+                    phone,
+                    service,
+                    comment
                 });
-                
-                // Также можно использовать formspree.io для форм
-                // const formResponse = await fetch('https://formspree.io/f/ваш_формспри_идентификатор', {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify({
-                //         name,
-                //         phone,
-                //         service,
-                //         comment
-                //     })
-                // });
-                
+
                 setSending(false);
                 setSuccess(true);
-                
+
                 setTimeout(() => {
                     setSuccess(false);
                     setName('');
