@@ -1,58 +1,46 @@
 const BOT_TOKEN = "8120391231:AAESkgyQ1_97rkPYuZlBsfRB_5l2PVG74HE"; // Токен бота
-const ADMIN_CHAT_ID = "522814078"; // ID администратора
+const ADMIN_CHAT_ID = "7666002805"; // ID администратора
 const TEST_CHAT_ID = "522814078";
 const SECOND_ADMIN_CHAT_ID = "522814078";
 
-// URL прокси (для публичного CORS Anywhere, может потребоваться предварительная активация)
-const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
-
-export async function sendMessageToTelegram(formData, formType) {
-    console.log("Отправка сообщения в Telegram:", formData, formType);
-    
+export async function sendMessageToTelegram(formData) {
     const isTest = formData.name.toLowerCase().includes("test");
     const chatIds = isTest ? [TEST_CHAT_ID] : [ADMIN_CHAT_ID, SECOND_ADMIN_CHAT_ID];
-    console.log("Отправка в чаты:", chatIds);
 
-    let text = `Новая заявка с сайта:\n\n`;
-    
-    if (formType === 'contact') {
-        text += `Заявка на консультацию\n`;
-    } else if (formType === 'modal') {
-        text += `Заявка из модального окна\n`;
+    let text = `📌 **Новая заявка с сайта**:\n`;
+
+    // Если указаны только имя и телефон — это заявка на консультацию
+    const hasOnlyNameAndPhone = formData.name && formData.phone && !formData.service && !formData.passportType && !formData.duration && !formData.residence && formData.totalPrice === undefined;
+
+    if (hasOnlyNameAndPhone) {
+        text += `📞 *Заявка на консультацию*\n`;
     }
 
-    if (formData.name) text += `Имя: ${formData.name}\n`;
-    if (formData.phone) text += `Телефон: ${formData.phone}\n`;
-    
-    if (formType === 'modal') {
-        if (formData.service) text += `Услуга: ${formData.service}\n`;
-        if (formData.comment) text += `Комментарий: ${formData.comment}\n`;
+    if (formData.service) text += `🛠 *Услуга*: ${formData.service}\n`;
+    if (formData.name) text += `👤 *Имя*: ${formData.name}\n`;
+    if (formData.phone) text += `📞 *Телефон*: ${formData.phone}\n`;
+    if (formData.age) {
+        const ageIcon = formData.age.includes("Дети") ? "👶" : "🧑‍💼"; // 👶 для детей, 🧑‍💼 для взрослых
+        text += `${ageIcon} *Возраст*: ${formData.age}\n`;
     }
-    
-    text += `\nДата: ${new Date().toLocaleString('ru-RU')}`;
-    console.log("Текст сообщения:", text);
+    if (formData.passportType) text += `🛂 *Тип паспорта*: ${formData.passportType}\n`;
+    if (formData.duration) text += `⏳ *Срок выполнения*: ${formData.duration}\n`;
+    if (formData.residence) text += `📍 *Регистрация*: ${formData.residence}\n`;
+    if (formData.totalPrice !== undefined && formData.totalPrice !== 0) text += `💰 *Стоимость*: ${formData.totalPrice} ₽\n`;
 
-    // Изменяем URL, добавляя прокси перед адресом Telegram API
-    const url = `${CORS_PROXY}https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
     try {
         for (const chatId of chatIds) {
-            console.log(`Отправка в чат ${chatId}...`);
-            
             const response = await fetch(url, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
-                    chat_id: chatId, 
-                    text: text
-                })
+                body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: "Markdown" }),
             });
 
             const result = await response.json();
-            console.log(`Ответ от API для чата ${chatId}:`, result);
-            
             if (!result.ok) {
-                console.error(`Ошибка при отправке в чат ${chatId}:`, result.description);
+                console.error(`Ошибка при отправке в чат ${chatId}:`, result);
             }
         }
         return true;
