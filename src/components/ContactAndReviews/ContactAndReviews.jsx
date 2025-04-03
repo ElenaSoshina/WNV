@@ -12,7 +12,7 @@ export default function ContactAndReviews() {
 
                     <div className={styles.contactInfo}>
                         <p><strong>📍 Адрес:</strong> г. Москва, ул. Тверская, д. 20 стр. 1, 4 этаж, офис 401А</p>
-                        <p><strong>📞 Телефон:</strong> <a href="tel:+74955171080">+7 (495) 517-10-80</a>, <a href="tel:+79017356401">+7 (901) 735-64-01</a></p>
+                        <p><strong>📞 Телефон:</strong> <a href="tel:+74955171080">+7 (495) 517-10-80</a></p>
                         <p><strong>✉️ Email:</strong> <a href="mailto:visaland@mail.ru">visaland@mail.ru</a></p>
                     </div>
 

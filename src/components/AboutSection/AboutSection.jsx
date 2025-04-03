@@ -19,7 +19,7 @@ export default function AboutSection() {
         {
             icon: <FaFileAlt />,
             number: '200',
-            label: 'документов ежедневно'
+            label: 'документов ежемесячно'
         },
     ];
 
