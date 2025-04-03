@@ -1,13 +1,10 @@
-/**
- * Отправка сообщения в Telegram
- * @param {Object} formData - Данные формы
- * @param {string} formType - Тип формы (modal, contact)
- * @returns {Promise<boolean>} - Результат отправки
- */
 const BOT_TOKEN = "8120391231:AAESkgyQ1_97rkPYuZlBsfRB_5l2PVG74HE"; // Токен бота
 const ADMIN_CHAT_ID = "522814078"; // ID администратора
 const TEST_CHAT_ID = "522814078";
 const SECOND_ADMIN_CHAT_ID = "522814078";
+
+// URL прокси (для публичного CORS Anywhere, может потребоваться предварительная активация)
+const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
 
 export async function sendMessageToTelegram(formData, formType) {
     console.log("Отправка сообщения в Telegram:", formData, formType);
@@ -16,7 +13,6 @@ export async function sendMessageToTelegram(formData, formType) {
     const chatIds = isTest ? [TEST_CHAT_ID] : [ADMIN_CHAT_ID, SECOND_ADMIN_CHAT_ID];
     console.log("Отправка в чаты:", chatIds);
 
-    // Простой текст без Markdown форматирования
     let text = `Новая заявка с сайта:\n\n`;
     
     if (formType === 'contact') {
@@ -36,7 +32,8 @@ export async function sendMessageToTelegram(formData, formType) {
     text += `\nДата: ${new Date().toLocaleString('ru-RU')}`;
     console.log("Текст сообщения:", text);
 
-    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+    // Изменяем URL, добавляя прокси перед адресом Telegram API
+    const url = `${CORS_PROXY}https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
     try {
         for (const chatId of chatIds) {
@@ -48,7 +45,6 @@ export async function sendMessageToTelegram(formData, formType) {
                 body: JSON.stringify({ 
                     chat_id: chatId, 
                     text: text
-                    // Убираем parse_mode
                 })
             });
 
