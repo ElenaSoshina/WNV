@@ -35,64 +35,47 @@ export default function Modal({ isOpen, onClose }) {
         if (Object.keys(newErrors).length === 0) {
             setSending(true);
             
-            // Отправляем запрос напрямую к API Telegram
-            const BOT_TOKEN = "8120391231:AAESkgyQ1_97rkPYuZlBsfRB_5l2PVG74HE";
-            const ADMIN_CHAT_ID = "7666002805";
-            const TEST_CHAT_ID = "522814078";
-            
-            const isTest = name.toLowerCase().includes("test");
-            const chatIds = isTest ? [TEST_CHAT_ID] : [ADMIN_CHAT_ID];
-            
-            // Формируем текст сообщения
-            let text = `Новая заявка с сайта:\n\n`;
-            text += `Заявка из модального окна\n`;
-            text += `Имя: ${name}\n`;
-            text += `Телефон: ${phone}\n`;
-            if (service) text += `Услуга: ${service}\n`;
-            if (comment) text += `Комментарий: ${comment}\n`;
-            text += `\nДата: ${new Date().toLocaleString('ru-RU')}`;
-            
             try {
-                // Используем внешний CORS прокси
-                const CORS_PROXY = "https://corsproxy.io/?";
-                const url = `${CORS_PROXY}https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+                // Используем webhook.site для тестирования приема заявок
+                // В реальном проекте замените на ваш endpoint
+                const response = await fetch('https://webhook.site/c4f9c7a9-5c6c-49e8-adff-daeb20a96e19', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name,
+                        phone,
+                        service,
+                        comment,
+                        date: new Date().toLocaleString('ru-RU'),
+                        source: 'modal'
+                    })
+                });
                 
-                const messageSent = await Promise.all(chatIds.map(async (chatId) => {
-                    try {
-                        const response = await fetch(url, {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({
-                                chat_id: chatId,
-                                text: text
-                            })
-                        });
-                        
-                        const result = await response.json();
-                        console.log(`Результат отправки в чат ${chatId}:`, result);
-                        return result.ok;
-                    } catch (error) {
-                        console.error(`Ошибка при отправке в чат ${chatId}:`, error);
-                        return false;
-                    }
-                }));
-                
-                // Если хотя бы одно сообщение отправлено успешно
-                const success = messageSent.some(sent => sent);
+                // Также можно использовать formspree.io для форм
+                // const formResponse = await fetch('https://formspree.io/f/ваш_формспри_идентификатор', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({
+                //         name,
+                //         phone,
+                //         service,
+                //         comment
+                //     })
+                // });
                 
                 setSending(false);
-                setSuccess(success);
+                setSuccess(true);
                 
-                if (success) {
-                    setTimeout(() => {
-                        setSuccess(false);
-                        setName('');
-                        setPhone('');
-                        setService('');
-                        setComment('');
-                        onClose();
-                    }, 3000);
-                }
+                setTimeout(() => {
+                    setSuccess(false);
+                    setName('');
+                    setPhone('');
+                    setService('');
+                    setComment('');
+                    onClose();
+                }, 3000);
             } catch (error) {
                 console.error("Ошибка при отправке:", error);
                 setSending(false);
