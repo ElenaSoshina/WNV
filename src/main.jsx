@@ -10,7 +10,7 @@ if (rootElement) {
     const root = createRoot(rootElement);
     root.render(
         <React.StrictMode>
-            <BrowserRouter basename="/visaland-ru">
+            <BrowserRouter basename="/WNV">
                 <App />
             </BrowserRouter>
         </React.StrictMode>
