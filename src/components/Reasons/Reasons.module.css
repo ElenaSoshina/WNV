@@ -1,0 +1,147 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.gridWrapper {
+    display: block;
+    margin-top: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* адаптивно */
+    gap: 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.5rem;
+    border: 1px solid #ccc; /* четкая граница */
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    min-height: 100px; /* задаем минимальную высоту */
+}
+
+.icon {
+    color: #ed5e5e;
+    margin-bottom: 1rem;
+}
+
+.card p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+.slider {
+    display: none;
+}
+
+.toggleButton {
+    width: 20%;
+    margin: 2rem auto 0;
+    display: block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ed5e5e;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggleButton:hover {
+    background-color: #c30638;
+}
+
+.mobileOnly {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobileOnly {
+        display: block;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 40px 0;
+
+    }
+    .gridWrapper {
+        display: none;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .slider {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 16px;
+        padding: 0 8px;
+    }
+
+    .cardWrapper {
+        flex: 0 0 100%;
+        scroll-snap-align: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .card {
+        max-width: 90%;
+        background: #fff;
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 16px;
+        gap: 8px;
+    }
+
+    .pageDot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #ccc;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .activeDot {
+        background-color: #ed5e5e;
+    }
+}

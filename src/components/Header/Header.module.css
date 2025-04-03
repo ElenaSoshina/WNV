@@ -1,0 +1,157 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    padding: 10px;
+}
+
+.inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*padding: 16px 0;*/
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+
+}
+
+.logo {
+    text-align: left;
+}
+
+.logo a {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.logoVisa {
+    color: #000000; /* например, синий */
+}
+
+.logoLand {
+    color: #ed5e5e; /* например, оранжевый */
+}
+
+
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #333;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav a {
+    color: #333;
+    font-weight: 500;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.phone {
+    color: #333;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.button {
+    background-color: #ed5e5e;
+    color: white;
+    font-weight: 600;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #d86666;
+}
+
+/* ===== Адаптив ===== */
+@media (max-width: 768px) {
+    .burger {
+        display: flex;
+        margin-right: 0;
+    }
+
+    .logo {
+        margin-left: 10px;
+    }
+
+    .menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px;
+
+        background-color: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 👈 тень */
+        border-top: 1px solid #eaeaea;            /* 👈 отделение */
+        z-index: 999;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .menuOpen {
+        display: flex;
+    }
+
+    .nav {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav a {
+        padding: 14px 24px; /* 👈 увеличиваем высоту */
+        border-bottom: 1px solid #f0f0f0; /* 👈 разделение пунктов */
+        color: #333;
+        font-weight: 500;
+        transition: background 0.2s ease;
+    }
+
+
+    .contact {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

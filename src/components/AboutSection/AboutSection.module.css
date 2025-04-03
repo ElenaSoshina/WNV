@@ -1,0 +1,69 @@
+.section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.card {
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    flex: 1 1 250px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.icon {
+    font-size: 36px;
+    color: #e85252;
+    margin-bottom: 16px;
+}
+
+.number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.label {
+    font-size: 16px;
+    color: #666;
+}
+
+.buttonWrapper {
+    margin-top: 20px;
+}
+
+.button {
+    display: inline-block;
+    background-color: #e85252;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #b62c5c;
+}

@@ -1,0 +1,140 @@
+.hero {
+    padding: 120px 0 60px;
+    background-color: #fff;
+}
+
+/*.container {*/
+/*    max-width: 1200px;*/
+/*    margin: 0 auto;*/
+/*    padding: 0 20px;*/
+/*}*/
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.left {
+    flex: 1 1 60%;
+    width: 60%;
+}
+
+.right {
+    flex: 1 1 35%;
+    text-align: center;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    line-height: 1.4;
+}
+
+.black {
+    color: #1a1a1a;
+}
+
+.pink {
+    color: #ed5e5e;
+    font-weight: 700;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 24px 0;
+}
+
+.featureItem {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 200px;
+    width: 100%;
+    gap: 12px;
+    font-size: 14px;
+    color: #333;
+}
+
+.icon {
+    font-size: 32px;
+    color: #000;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.cta {
+    /*width: 50%;*/
+    background-color: #ed5e5e;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.note {
+    font-size: 14px;
+    color: #555;
+}
+
+.badge {
+    background-color: #ed5e5e;
+    color: white;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 80px;
+        padding-bottom: 0;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 16px; /* Добавь это */
+    }
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .featureItem {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        max-width: 220px;
+        width: 100%;
+        gap: 12px;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+}
