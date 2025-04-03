@@ -11,7 +11,7 @@
     "predeploy": "vite build",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://ElenaSoshina.github.io/WNV",
+  "homepage": "https://migrate.moscow",
   "dependencies": {
     "clsx": "^2.1.1",
     "gh-pages": "^6.3.0",

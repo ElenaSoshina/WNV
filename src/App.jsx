@@ -7,8 +7,7 @@ export default function App() {
     return (
         <Routes>
             <Route path="/" element={<Layout />}>
-                <Route index element={<Navigate to="/index.html" replace />} />
-                <Route path="/index.html" element={<HomePage />} />
+                <Route index element={<HomePage />} />
             </Route>
         </Routes>
     );
