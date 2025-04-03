@@ -1,6 +1,6 @@
 export async function sendMessageToTelegram(formData) {
     const BOT_TOKEN = "8120391231:AAESkgyQ1_97rkPYuZlBsfRB_5l2PVG74HE";
-    const ADMIN_CHAT_ID = "7522814078";
+    const ADMIN_CHAT_ID = "241402242";
     const TEST_CHAT_ID = "522814078";
     const SECOND_ADMIN_CHAT_ID = "522814078";
   

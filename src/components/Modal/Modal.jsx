@@ -32,6 +32,8 @@ export default function Modal({ isOpen, onClose }) {
         if (!name.trim()) newErrors.name = 'Пожалуйста, введите ваше имя';
         if (!/^\+7\d{10}$/.test(phone)) newErrors.phone = 'Введите корректный номер телефона в формате +7XXXXXXXXXX';
 
+        if (!service) newErrors.service = 'Пожалуйста, выберите услугу';
+
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
@@ -100,26 +102,28 @@ export default function Modal({ isOpen, onClose }) {
                             </div>
 
                             <div className={styles.fieldWrapper}>
-                                <select 
+                                <select
                                     value={service}
                                     onChange={(e) => setService(e.target.value)}
+                                    className={errors.service ? styles.errorField : ''}
                                 >
                                     <option value="">Выберите услугу</option>
                                     <option value="РВП">РВП</option>
                                     <option value="ВНЖ">ВНЖ</option>
                                     <option value="Гражданство РФ">Гражданство РФ</option>
                                 </select>
+                                {errors.service && <span className={styles.errorMsg}>{errors.service}</span>}
                             </div>
 
-                            <textarea 
-                                placeholder="Комментарий (необязательно)" 
+                            <textarea
+                                placeholder="Комментарий (необязательно)"
                                 rows="3"
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
                             ></textarea>
 
-                            <button 
-                                type="submit" 
+                            <button
+                                type="submit"
                                 className={styles.button}
                                 disabled={sending}
                             >

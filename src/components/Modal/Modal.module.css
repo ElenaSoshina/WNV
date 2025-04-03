@@ -123,6 +123,18 @@ textarea {
     resize: none;
 }
 
+@media (min-width: 769px) {
+    .close {
+        right: 24px;
+        top: 24px;
+        font-size: 28px;
+        padding: 4px;
+        width: auto;
+        height: auto;
+        background: none;
+        color: #333;
+    }
+}
 
 @media (max-width: 768px) {
     .modal {
