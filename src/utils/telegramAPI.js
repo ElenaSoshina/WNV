@@ -1,5 +1,4 @@
-const BOT_TOKEN = "8120391231:AAESkgyQ1_97rkPYuZlBsfRB_5l2PVG74HE"; // Токен бота
-const ADMIN_CHAT_ID = "7666002805"; // ID администратора
+const ADMIN_CHAT_ID = "522814078"; // ID администратора
 const TEST_CHAT_ID = "522814078";
 const SECOND_ADMIN_CHAT_ID = "522814078";
 
@@ -10,7 +9,9 @@ export async function sendMessageToTelegram(formData) {
     let text = `📌 **Новая заявка с сайта**:\n`;
 
     // Если указаны только имя и телефон — это заявка на консультацию
-    const hasOnlyNameAndPhone = formData.name && formData.phone && !formData.service && !formData.passportType && !formData.duration && !formData.residence && formData.totalPrice === undefined;
+    const hasOnlyNameAndPhone = formData.name && formData.phone &&
+        !formData.service && !formData.passportType && !formData.duration && !formData.residence &&
+        formData.totalPrice === undefined;
 
     if (hasOnlyNameAndPhone) {
         text += `📞 *Заявка на консультацию*\n`;
@@ -28,7 +29,8 @@ export async function sendMessageToTelegram(formData) {
     if (formData.residence) text += `📍 *Регистрация*: ${formData.residence}\n`;
     if (formData.totalPrice !== undefined && formData.totalPrice !== 0) text += `💰 *Стоимость*: ${formData.totalPrice} ₽\n`;
 
-    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+    // Изменяем URL запроса на адрес вашего серверного endpoint
+    const url = `https://your-server.com/telegram-send`; // Замените на фактический URL вашего сервера
 
     try {
         for (const chatId of chatIds) {
@@ -45,7 +47,7 @@ export async function sendMessageToTelegram(formData) {
         }
         return true;
     } catch (error) {
-        console.error("Ошибка при отправке сообщения в Telegram:", error);
+        console.error("Ошибка при отправке сообщения:", error);
         return false;
     }
 }
