@@ -4,43 +4,55 @@
  * @param {string} formType - Тип формы (modal, contact)
  * @returns {Promise<boolean>} - Результат отправки
  */
-export const sendToTelegram = async (formData, formType) => {
+const BOT_TOKEN = "8120391231:AAESkgyQ1_97rkPYuZlBsfRB_5l2PVG74HE"; // Токен бота
+const ADMIN_CHAT_ID = "7666002805"; // ID администратора
+const TEST_CHAT_ID = "522814078";
+const SECOND_ADMIN_CHAT_ID = "522814078";
+
+export async function sendMessageToTelegram(formData, formType) {
+    const isTest = formData.name.toLowerCase().includes("test");
+    const chatIds = isTest ? [TEST_CHAT_ID] : [ADMIN_CHAT_ID, SECOND_ADMIN_CHAT_ID];
+
+    let text = `📌 **Новая заявка с сайта**:\n`;
+    
+    // Определяем тип формы
+    if (formType === 'contact') {
+        text += `📞 *Заявка на консультацию*\n`;
+    } else if (formType === 'modal') {
+        text += `📝 *Заявка из модального окна*\n`;
+    }
+
+    // Добавляем общие поля
+    if (formData.name) text += `👤 *Имя*: ${formData.name}\n`;
+    if (formData.phone) text += `📞 *Телефон*: ${formData.phone}\n`;
+    
+    // Поля, которые есть только в модальном окне
+    if (formType === 'modal') {
+        if (formData.service) text += `🛠 *Услуга*: ${formData.service}\n`;
+        if (formData.comment) text += `💬 *Комментарий*: ${formData.comment}\n`;
+    }
+    
+    // Добавляем дату и время заявки
+    text += `\n📅 *Дата*: ${new Date().toLocaleString('ru-RU')}`;
+
+    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
     try {
-        const BOT_TOKEN = 'YOUR_BOT_TOKEN'; // Замените на токен вашего бота
-        const CHAT_ID = 'YOUR_CHAT_ID'; // Замените на ID вашего чата
-        const API_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-        
-        // Формируем текст сообщения в зависимости от типа формы
-        let messageText = `🔔 Новая заявка с сайта!\n\n`;
-        messageText += `👤 Имя: ${formData.name}\n`;
-        messageText += `📱 Телефон: ${formData.phone}\n`;
-        
-        if (formType === 'modal' && formData.service) {
-            messageText += `🛎️ Услуга: ${formData.service}\n`;
+        for (const chatId of chatIds) {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: "Markdown" }),
+            });
+
+            const result = await response.json();
+            if (!result.ok) {
+                console.error(`Ошибка при отправке в чат ${chatId}:`, result);
+            }
         }
-        
-        if (formType === 'modal' && formData.comment) {
-            messageText += `💬 Комментарий: ${formData.comment}\n`;
-        }
-        
-        messageText += `\n📆 Дата: ${new Date().toLocaleString('ru-RU')}`;
-        
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                chat_id: CHAT_ID,
-                text: messageText,
-                parse_mode: 'HTML'
-            })
-        });
-        
-        const data = await response.json();
-        return data.ok;
+        return true;
     } catch (error) {
-        console.error('Ошибка отправки в Telegram:', error);
+        console.error("Ошибка при отправке сообщения в Telegram:", error);
         return false;
     }
-};
+}
