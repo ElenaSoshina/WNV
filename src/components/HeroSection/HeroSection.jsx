@@ -19,7 +19,7 @@ export default function HeroSection() {
                             <span className={styles.pink}>РВП, ВНЖ, Гражданство РФ </span>
                             <span className={styles.black}>по Московской области (Одинцово, Подольск) — без лишних очередей, переплат и бюрократии. </span>
                             <span className={styles.black}>Уже </span>
-                            <span className={styles.pink}>10 лет</span>
+                            <span className={styles.pink}>22 года</span>
                             <span className={styles.black}> работаем на Ваш результат.</span>
                         </h1>
 
