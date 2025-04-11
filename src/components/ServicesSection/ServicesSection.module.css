@@ -17,8 +17,9 @@
 }
 
 .card {
-    background-color: #858585; /* тёмно-серый */
-    color: #fff;
+    background-color: #fff; /* тёмно-серый */
+    color: black;
+    border: 1px solid #ed5e5e;
     padding: 24px;
     border-radius: 12px;
     flex: 1 1 300px;

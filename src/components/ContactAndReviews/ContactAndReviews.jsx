@@ -35,8 +35,7 @@ export default function ContactAndReviews() {
                     <p className={styles.description}>Наши клиенты довольны сервисом и рекомендуют нас!</p>
 
                     <div className={styles.reviewsWidget}>
-                        <iframe src="https://swdgts.ru/098dc2cf63cea82f9d1a780e8a91dbd0" width="100%" height="700"
-                                frameBorder="0"></iframe>
+                    <iframe src="https://swdgts.ru/8e3ca1270588805197678ab595a27a69" width="100%" height="700" frameborder="0"></iframe>
                     </div>
                 </div>
             </div>
