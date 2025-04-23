@@ -11,7 +11,7 @@ export default function Header({ onOpenModal}) {
         <header className={styles.header}>
             <div className={styles.inner}>
                 <div className={styles.logo}>
-                    <Link to="/index.html">
+                    <Link to="/">
                         <span className={styles.logoVisa}>MIG</span>
                         <span className={styles.logoLand}>MOS</span>
                     </Link>

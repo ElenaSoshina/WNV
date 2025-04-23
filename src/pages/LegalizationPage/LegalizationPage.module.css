@@ -1,0 +1,371 @@
+.section {
+    padding: 60px 0;
+    background-color: #fff;
+}
+
+.intro {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.introTitle {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ed5e5e;
+    margin-bottom: 24px;
+}
+
+.introText {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.consultButton {
+    margin-top: 24px;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #ed5e5e;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.consultButton:hover {
+    background-color: #d14400;
+}
+
+.instructions {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.countries {
+    display: block;
+    font-size: 18px;
+    margin-top: 8px;
+    color: #666;
+}
+
+.steps {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.step {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.stepContent {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.arrow {
+    width: 30px;
+    height: 15px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.arrow:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    border-right: 2px solid #ed5e5e;
+    border-bottom: 2px solid #ed5e5e;
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.stepIcons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.iconBlock {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+}
+
+.icon {
+    color: #ed5e5e;
+    font-size: 28px;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stepList {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.stepList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+}
+
+.stepList li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.stepList li:before {
+    content: "•";
+    color: #ed5e5e;
+    position: absolute;
+    left: 0;
+}
+
+.stepContent h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #ed5e5e;
+    text-align: center;
+}
+
+.iconBlock p {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+}
+
+.footer {
+    max-width: 800px;
+    margin: 40px auto 0;
+    padding: 24px;
+    background-color: #f8f8f8;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+
+.footer a {
+    color: #ed5e5e;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.guarantees {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.guarantees h2 {
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid rgba(237, 94, 94, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 12px 0;
+}
+
+.content p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+}
+
+.questions {
+    max-width: 900px;
+    margin: 60px auto 0;
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f8f8f8;
+    border-radius: 12px;
+}
+
+.questions h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.button {
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-width: 200px;
+}
+
+.button.primary {
+    background-color: #ed5e5e;
+    color: white;
+    border: none;
+}
+
+.button.primary:hover {
+    background-color: #d14400;
+}
+
+.button.secondary {
+    background-color: white;
+    color: #ed5e5e;
+    border: 2px solid #ed5e5e;
+}
+
+.button.secondary:hover {
+    background-color: #ed5e5e;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 40px 0;
+    }
+
+    .intro {
+        margin-bottom: 40px;
+    }
+
+    .introTitle {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .introText {
+        font-size: 16px;
+    }
+
+    .consultButton {
+        width: 100%;
+        padding: 12px 24px;
+    }
+
+    .title {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    .countries {
+        font-size: 16px;
+    }
+
+    .guarantees h2 {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .item {
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .icon {
+        font-size: 24px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .content h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .content p {
+        font-size: 14px;
+    }
+
+    .questions {
+        margin-top: 40px;
+        padding: 30px 15px;
+    }
+
+    .questions h2 {
+        font-size: 24px;
+        margin-bottom: 24px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .button {
+        width: 100%;
+        padding: 12px 24px;
+        min-width: auto;
+    }
+} 

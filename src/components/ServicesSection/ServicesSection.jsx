@@ -35,6 +35,18 @@ export default function ServicesSection() {
             ],
             price: 'от 100 000 ₽',
         },
+        {
+            title: 'Легализация в России до 30 апреля!',
+            deadline: 'Сложное миграционное законодательство? Доверьтесь профессионалам!',
+            list: [
+                'Мы гарантируем индивидуальный подход, полное сопровождение и безупречную законность всех действий',
+                'Забудьте о бюрократии — мы сделаем все за вас',
+                'Оперативность и прозрачность гарантированы',
+                'Получите бесплатную консультацию и обеспечьте себе спокойное будущее в России!',
+            ],
+            price: 'от 100 000 ₽',
+            isWide: true,
+        },
     ];
 
     return (
@@ -43,7 +55,7 @@ export default function ServicesSection() {
                 <h2 className={styles.heading}>Чем мы можем Вам помочь</h2>
                 <div className={styles.cards}>
                     {services.map((service, index) => (
-                        <div key={index} className={styles.card}>
+                        <div key={index} className={`${styles.card} ${service.isWide ? styles.wide : ''}`}>
                             <p className={styles.title}>{service.title}</p>
                             <p className={styles.subtitle}>{service.deadline}</p>
                             <ul className={styles.list}>
@@ -51,7 +63,14 @@ export default function ServicesSection() {
                                     <li key={i}>{item}</li>
                                 ))}
                             </ul>
-                            <div className={styles.price}>Цена <span>{service.price}</span></div>
+                            <div className={styles.priceBlock}>
+                                <div className={styles.price}>Цена <span>{service.price}</span></div>
+                                {service.isWide && (
+                                    <Link to="/legalization" className={styles.moreButton}>
+                                        Подробнее
+                                    </Link>
+                                )}
+                            </div>
                         </div>
                     ))}
                 </div>

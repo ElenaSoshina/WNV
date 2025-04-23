@@ -111,6 +111,7 @@ export default function Modal({ isOpen, onClose }) {
                                     <option value="РВП">РВП</option>
                                     <option value="ВНЖ">ВНЖ</option>
                                     <option value="Гражданство РФ">Гражданство РФ</option>
+                                    <option value="Легализация в РФ">Легализация в РФ</option>
                                 </select>
                                 {errors.service && <span className={styles.errorMsg}>{errors.service}</span>}
                             </div>
