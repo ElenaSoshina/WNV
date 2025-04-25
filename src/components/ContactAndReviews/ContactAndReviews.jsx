@@ -1,8 +1,58 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import styles from './ContactAndReviews.module.css';
 import '../../App.css'
 
 export default function ContactAndReviews() {
+    const widgetRef = useRef(null);
+
+    useEffect(() => {
+        /* ─── 1. плейсхолдер виджета ─── */
+        if (widgetRef.current && !widgetRef.current.querySelector('.dg__widget-start')) {
+            const div = document.createElement('div');
+            div.className           = 'dg__widget-start';
+            div.dataset.widgetId    = '5fec0a96-88cf-4c6c-8819-e4ce288750fb';
+            div.dataset.slidesToShow = window.innerWidth <= 768 ? '1' : '3';
+            widgetRef.current.appendChild(div);
+        }
+
+        /* ─── 2. CSS-фиксы (добавляем один раз) ─── */
+        if (!document.getElementById('dg-extra-styles')) {
+            const style = document.createElement('style');
+            style.id = 'dg-extra-styles';
+            style.textContent = `
+        /* убираем заголовок «Отзывы клиентов» у самого виджета */
+        .dg__widget-start .header-text { display:none !important; }
+  
+        /* фикс: контейнер swiper не должен растягивать страницу */
+        .dg__widget-start .swiper {
+          width:100% !important;
+          max-width:100% !important;
+          overflow:hidden !important;
+        }
+  
+        /* меняем tailwind-класс pl-10 (2.5rem → 10px) ровно в этом блоке */
+        section.reviews-widget.pl-10 { padding-left:10px !important; }
+  
+        /* мобильные: по одной карточке и неширокие элементы */
+        @media (max-width:768px){
+          .dg__review-item{flex:0 0 100% !important;max-width:100% !important;}
+        }
+      `;
+            document.head.appendChild(style);
+        }
+
+        /* ─── 3. динамически меняем число карточек ─── */
+        const updateSlides = () => {
+            if (window.dgReviewsWidget?.update) {
+                window.dgReviewsWidget.update({
+                    slidesToShow: window.innerWidth <= 768 ? 1 : 3,
+                });
+            }
+        };
+        window.addEventListener('resize', updateSlides);
+        return () => window.removeEventListener('resize', updateSlides);
+    }, []);
+
     return (
         <section className={styles.section}>
             <div className="container">
@@ -31,11 +81,9 @@ export default function ContactAndReviews() {
 
                 {/* Блок: Отзывы клиентов */}
                 <div className={styles.reviewsSection}>
-                    <h3 className={styles.title}>Отзывы клиентов</h3>
-                    <p className={styles.description}>Наши клиенты довольны сервисом и рекомендуют нас!</p>
 
                     <div className={styles.reviewsWidget}>
-                    <iframe src="https://swdgts.ru/8e3ca1270588805197678ab595a27a69" width="100%" height="700" frameborder="0"></iframe>
+                        <div className={styles.widgetContainer} ref={widgetRef}/>
                     </div>
                 </div>
             </div>

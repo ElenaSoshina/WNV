@@ -125,3 +125,10 @@
     flex: 1;
 }
 
+@media (max-width: 768px) {
+    .priceBlock {
+        flex-direction: column;
+    }
+
+}
+
